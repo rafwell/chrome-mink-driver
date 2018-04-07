@@ -75,9 +75,10 @@ $mink = new Mink(array(
 
 Besides the above mentioned download options the following options can be provided
 
-| Option           | Value               | Description                   |
-|------------------|---------------------|-------------------------------|
-| socketTimeout    | int, default: 10    | Connection timeout in seconds |
+| Option           | Value               | Description                               |
+|------------------|---------------------|-------------------------------------------|
+| socketTimeout    | int, default: 10    | Connection timeout in seconds             |
+| domWaitTimeout   | int, default: 3000  | DOM ready waiting timeout in milliseconds |
 
 ## Rendering PDF and Screenshots
 

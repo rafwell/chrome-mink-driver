@@ -34,6 +34,10 @@ class ChromeDriver extends CoreDriver
      */
     private $document = 'document';
     /**
+     * @var int How many milliseconds we should wait for DOM to be ready after each action/transition.
+     */
+    private $domWaitTimeout;
+    /**
      * @var array
      */
     private $options;
@@ -57,6 +61,7 @@ class ChromeDriver extends CoreDriver
         $this->browser = new ChromeBrowser($this->ws_url . '/devtools/browser', isset($options['socketTimeout']) ? $options['socketTimeout'] : 10);
         $this->browser->setHttpClient($http_client);
         $this->browser->setHttpUri($api_url);
+        $this->domWaitTimeout = isset($options['domWaitTimeout']) ? $options['domWaitTimeout'] : 3000;
         $this->options = $options;
     }
 
@@ -1327,7 +1332,7 @@ JS;
     protected function waitForDom()
     {
         if (!$this->page->hasJavascriptDialog()) {
-            $this->wait(3000, 'document.readyState == "complete"');
+            $this->wait($this->domWaitTimeout, 'document.readyState == "complete"');
             $this->page->waitForLoad();
         }
     }
