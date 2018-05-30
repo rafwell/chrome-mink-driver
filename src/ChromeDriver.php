@@ -619,7 +619,9 @@ JS;
                     $this->page->send('Input.dispatchKeyEvent', ['type' => 'keyDown', 'text' => chr(13)]);
                 }
                 $this->page->send('Input.dispatchKeyEvent', ['type' => 'keyDown', 'text' => $char]);
+                $this->keyDown($xpath, $char);
                 $this->page->send('Input.dispatchKeyEvent', ['type' => 'keyUp']);
+                $this->keyUp($xpath, $char);
             }
             usleep(5000);
 
