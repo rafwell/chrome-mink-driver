@@ -1,6 +1,15 @@
 Changelog
 =========
 
+## 2.6.3
+
+* Make DOM wait timeout configurable - [Nikita Nefedov](https://gitlab.com/nikita2206)
+* Dispatch javascript keyup/keydown on top of devtools Input.dispatchKeyEvent - [Florent Ruard-Dumaine](https://gitlab.com/atalargo)
+* Improved click handling for elements with non-zero border radius - [Carl Wiedemann](https://gitlab.com/c4rl)
+* Remove headless chrome check from `captureScreenshot()` - [Eric Jenkins](https://gitlab.com/ericjenkins)
+* Fixed handling of dialogs on click - [Arturas Smorgun](https://gitlab.com/asarturas)
+* Improved error handling when chrome Connection cannot be established - [Peter Rehm](https://gitlab.com/peterrehm)
+
 ## 2.6.2
 
 * Fixed wrongful assumption that chrome has crashed when it was waiting for a long page load.
