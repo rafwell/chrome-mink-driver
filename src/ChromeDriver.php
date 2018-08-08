@@ -1195,7 +1195,6 @@ JS;
         element.focus();
         var event = document.createEvent("Events");
         event.initEvent("$event", true, true);
-        event.key = $char;
         event.keyCode = $char;
         event.which = $char;
         event.ctrlKey = {$options['ctrlKey']};
