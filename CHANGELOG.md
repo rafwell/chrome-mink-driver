@@ -1,6 +1,10 @@
 Changelog
 =========
 
+## 2.6.4
+
+* Fixed StreamReadException not being caught when browser fails to respond on stop
+
 ## 2.6.3
 
 * Make DOM wait timeout configurable - [Nikita Nefedov](https://gitlab.com/nikita2206)
