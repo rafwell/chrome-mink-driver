@@ -84,14 +84,29 @@ abstract class DevToolsConnection
     protected function waitFor(callable $is_ready)
     {
         $data = [];
+
+        $minTries = 10;
+        $currTry = 0;
         while (true) {
-            try {
-                $response = $this->client->receive();
-            } catch (ConnectionException $exception) {
-                $message = $exception->getMessage();
-                $state = json_decode(substr($message, strpos($message, '{')), true);
-                throw new StreamReadException($state['eof'], $state['timed_out'], $state['blocked']);
-            }
+            $success = false;
+
+            do{
+                try {
+                    $response = $this->client->receive();
+                    $success = true;
+                } catch (ConnectionException $exception) {
+                    $message = $exception->getMessage();
+                    $state = json_decode(substr($message, strpos($message, '{')), true);
+                    if($currTry>=$minTries)
+                        throw new StreamReadException($state['eof'], $state['timed_out'], $state['blocked']);
+                    else{
+                        \Log::info('DevToolsConnection: A conexão está demorando a responder... '.$currTry.'/'.$minTries);
+                    }
+                    $currTry++;
+                    sleep(3);
+                }
+            }while($currTry<$minTries && !$success);
+
             if (is_null($response)) {
                 return null;
             }
