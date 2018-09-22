@@ -87,6 +87,7 @@ abstract class DevToolsConnection
 
         $minTries = 10;
         $currTry = 0;
+        $response = null;
         while (true) {
             $success = false;
 
