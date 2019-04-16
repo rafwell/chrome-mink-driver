@@ -85,7 +85,7 @@ abstract class DevToolsConnection
     {
         $data = [];
 
-        $minTries = 10;
+        $minTries = 3;
         $currTry = 0;
         $response = null;
         while (true) {
